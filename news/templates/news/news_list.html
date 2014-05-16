@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="col col-md-8 col-md-offset-2">
+	<h3>News</h3>
+	<div class="panel panel-default">
+	    <div class="list-group">
+	    	{% for news in news %}
+	        <a href="{{ news.link }}" class="list-group-item">
+	            <h4 class="list-group-item-heading">{{ news.title }}</h4>
+	            <p class="list-group-item-text">{{ news.description }}</p>
+	        </a>
+			{% endfor %}
+	    </div>
+	</div>
+	
+	<ul class="pagination">
+	    {% if news.has_previous %}
+	    	<li>
+	    		<a href="{% url 'newslist' news.previous_page_number %}">&laquo;</a>
+	    	</li>
+	    {% endif %}
+	    {% for page in paginator.page_range %}
+	    	<li {% if page == news.number %}class="active"{% endif %}>
+	    		<a href="{% url 'newslist' page %}">{{ page }}</a>
+	    	</li>
+	    {% endfor %}
+	    {% if news.has_next %}
+	    	<li>
+	    		<a href="{% url 'newslist' news.next_page_number %}">&raquo;</a>
+	    	</li>
+	    {% endif %}
+	</ul>
+
+</div>
+{% endblock %}
+
+{% block title %}All News{% endblock %}

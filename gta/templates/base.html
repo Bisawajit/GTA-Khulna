@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}GTA{% endblock %}</title>
+	{% load staticfiles %}
+	<!-- CSS -->
+	<link rel="stylesheet" href="{% static '/static/vendor/bootstrap/css/bootstrap.css' %}">
+	{% block css %}{% endblock %}
+</head>
+<body>
+	{% include "nav.html" %}
+	<div class="container">
+		{% block body %}{% endblock %}
+	</div>
+	<!-- JS -->
+	<script src="{% static '/static/vendor/jquery.js' %}"></script>
+	<script src="{% static '/static/vendor/bootstrap/js/bootstrap.js' %}"></script>
+	{% block js %}{% endblock %}
+</body>
+</html>
